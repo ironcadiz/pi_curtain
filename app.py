@@ -1,5 +1,5 @@
-from flask import Flask
-import Rpi.GPIO as gpio
+from flask import Flask, request
+import RPi.GPIO as gpio
 import time
 
 gpio.setmode(gpio.BOARD)
@@ -21,6 +21,7 @@ def up():
     gpio.output(11,True)
     time.sleep(time_param)
     gpio.output(11,False)
+    return "raised"
 
 
 @app.route('/down')
@@ -32,6 +33,7 @@ def down():
     gpio.output(11,True)
     time.sleep(time_param)
     gpio.output(11,False)
+    return "lowered"
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
